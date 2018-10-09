@@ -96,6 +96,18 @@ void modioSetDebugLevel(u32 debug_level)
 
 void modioShutdown()
 {
+  if(modio::set_download_listener_call)
+  {
+    delete modio::set_download_listener_call;
+    modio::set_download_listener_call = NULL;
+  }
+
+  if(modio::set_upload_listener_call)
+  {
+      delete modio::set_upload_listener_call;
+      modio::set_upload_listener_call = NULL;
+  }
+
   modio::curlwrapper::shutdownCurl();
 }
 
